@@ -2,9 +2,7 @@ package com.techelevator;
 
 public class VendingMachine {
 
-	
 	private int productAmount;
-	
 	
 	public VendingMachine(int productAmount) {
 		this.productAmount = productAmount;
@@ -12,6 +10,11 @@ public class VendingMachine {
 	
 	public int stockInventory(int productToStock) {
 		productAmount += productToStock;
+		return productAmount;
+	}
+	
+	public int dispense(int productsToDispense) {
+		productAmount -= productsToDispense;
 		return productAmount;
 	}
 
