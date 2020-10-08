@@ -2,17 +2,9 @@ package com.techelevator;
 
 public class VendingMachine {
 
-	private String slotLocation;
-	private String productName;
-	private String productType;
 	private int productAmount;
-	private double price;
 	
-	public VendingMachine(String slotLocation, String productName, String productType, int productAmount, double price) {
-		this.slotLocation = slotLocation;
-		this.productName = productName;
-		this.productType = productType;
-		this.price = price;
+	public VendingMachine(int productAmount) {
 		this.productAmount = productAmount;
 	}
 	
@@ -20,37 +12,10 @@ public class VendingMachine {
 		productAmount += productToStock;
 		return productAmount;
 	}
-
-	public String getSlotLocation() {
-		return slotLocation;
-	}
-
-	public void setSlotLocation(String slotLocation) {
-		this.slotLocation = slotLocation;
-	}
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public String getProductType() {
-		return productType;
-	}
-
-	public void setProductType(String productType) {
-		this.productType = productType;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
+	
+	public int dispense(int productsToDispense) {
+		productAmount -= productsToDispense;
+		return productAmount;
 	}
 
 	public int getProductAmount() {
