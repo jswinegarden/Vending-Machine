@@ -10,11 +10,23 @@ import java.util.Scanner;
 import com.techelevator.VendingMachine;
 
 public class Menu extends VendingMachine {
+<<<<<<< HEAD
 	
+=======
+<<<<<<< HEAD
+	
+	
+
+	public Menu(int productAmount, double balance) {
+		super(productAmount, balance);
+		
+=======
+>>>>>>> 85291dbcb3b661f5894f7c0aaf3e17847fa08c5d
 
 	public Menu(int productAmount, int balance) {
 		super(productAmount, balance);
 		// TODO Auto-generated constructor stub
+>>>>>>> 35bbb40107e4c21360c0a025843f4a48e86bac01
 	}
 
 	public void printBanner() {
@@ -46,7 +58,7 @@ public class Menu extends VendingMachine {
 		Scanner fileScanner = new Scanner(stock);
 		while (fileScanner.hasNextLine()) {
 			String line = fileScanner.nextLine();
-			System.out.println(line + "..fill this!!!.." + " remaining"); // add the number of available items for each product
+			System.out.println(line + getProductAmount() + " remaining"); 
 		}
 	}
 
@@ -56,6 +68,17 @@ public class Menu extends VendingMachine {
 		System.out.println("(2) Select Product > ");
 		System.out.println("(3) Finish Transaction > ");
 		System.out.println("Current Money Provided: $" + getBalance());
+		
+		Scanner userInput = new Scanner(System.in);
+		if (userInput.equals("1")) feedMoney(balance);// add feed money functionality
+		if (userInput.equals("2")) printStock(); // add purchase functionality 
+		if (userInput.equals("3")) dispenseChange(balance); selectionMaker(); // close out
+		
+	}
+	
+	@SuppressWarnings("resource")
+	public void addMoney() throws FileNotFoundException {
+		
 		
 		Scanner userInput = new Scanner(System.in);
 		if (userInput.equals("1")); // add feed money functionality

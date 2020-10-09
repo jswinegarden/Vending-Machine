@@ -1,15 +1,22 @@
 package com.techelevator;
 
 import java.io.File;
+<<<<<<< HEAD
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
+=======
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
+>>>>>>> 85291dbcb3b661f5894f7c0aaf3e17847fa08c5d
 import java.util.Scanner;
 
 public class VendingMachine {
 
 	private int productAmount;
-	private double balance;
+	protected double balance;
 	
 	public VendingMachine(int productAmount, double balance) {
 		this.productAmount = productAmount;
@@ -21,8 +28,9 @@ public class VendingMachine {
 		return productAmount;
 	}
 	
-	public int dispenseProduct(int productsToDispense) {
+	public int dispense(int productsToDispense) {
 		productAmount -= productsToDispense;
+		// logData();
 		return productAmount;
 	}
 	
@@ -43,43 +51,12 @@ public class VendingMachine {
 			amountToDeposit += 10.00;
 		}
         balance += amountToDeposit;
+      //  logData();
         
         System.out.println("Your balance is $" + balance);
         
         return balance;
     }
-	
-	public double updateVMBalance(double price) {
-		balance -= price;
-		return balance;
-	}
-	
-	public double dispenseChange(double change) {
-		int quarters = 0;
-		int dimes = 0;
-		int nickels = 0;
-		int pennies = 0;
-		
-		balance -= change;
-		
-		while(change >= 0.25) {
-			quarters++;
-			change -= 0.25;
-		}
-		while(change >= 0.10) {
-			dimes++;
-			change -= 0.10;
-		}
-		while(change >= 0.05) {
-			nickels++;
-			change -= 0.05;
-		}
-		while(change >= 0.01) {
-			pennies++;
-			change -= 0.01;
-		}
-		return balance;
-	}
 
 	public int getProductAmount() {
 		return productAmount;
@@ -96,4 +73,19 @@ public class VendingMachine {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
+<<<<<<< HEAD
+=======
+	
+	public void logData() throws IOException {
+		Date currentDate = new Date(0);
+		String dateString = currentDate.toString();
+		File myFile = new File("Log.txt");
+		
+		try (FileWriter myFileWriter = new FileWriter(myFile.getAbsolutePath(), false)) {
+			PrintWriter myPrintWriter = new PrintWriter(myFileWriter);
+			myPrintWriter.println(dateString + "...action..." + "...amount..." + getBalance());
+		}
+		
+	}
+>>>>>>> 85291dbcb3b661f5894f7c0aaf3e17847fa08c5d
 }
