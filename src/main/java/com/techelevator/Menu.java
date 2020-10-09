@@ -2,16 +2,25 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.Scanner;
+import com.techelevator.VendingMachine;
 
 public class Menu extends VendingMachine {
+<<<<<<< HEAD
 	
 	
 
 	public Menu(int productAmount, double balance) {
 		super(productAmount, balance);
 		
+=======
+
+	public Menu(int productAmount, int balance) {
+		super(productAmount, balance);
+		// TODO Auto-generated constructor stub
+>>>>>>> 35bbb40107e4c21360c0a025843f4a48e86bac01
 	}
 
 	public void printBanner() {
@@ -52,6 +61,7 @@ public class Menu extends VendingMachine {
 		System.out.println("(1) Feed Money > ");
 		System.out.println("(2) Select Product > ");
 		System.out.println("(3) Finish Transaction > ");
+		System.out.println("Current Money Provided: $" + getBalance());
 		
 		Scanner userInput = new Scanner(System.in);
 		if (userInput.equals("1")) feedMoney(balance);// add feed money functionality
@@ -72,8 +82,12 @@ public class Menu extends VendingMachine {
 	}
 	
 	
-	public void generateSalesReport() {
-		Date currentDate = new Date();
+	public void generateSalesReport() throws FileNotFoundException {
+		Date currentDate = new Date(0);
+		String dateString = currentDate.toString();
+		File salesReport = new File(dateString);
+		PrintWriter printWriter = new PrintWriter(salesReport);
+		// add log data
 	}
 	
 	
