@@ -5,9 +5,14 @@ import java.io.FileNotFoundException;
 import java.sql.Date;
 import java.util.Scanner;
 
-public class Menu {
+public class Menu extends VendingMachine {
 	
 	
+
+	public Menu(int productAmount, double balance) {
+		super(productAmount, balance);
+		
+	}
 
 	public void printBanner() {
 	System.out.println("***************");
@@ -47,6 +52,17 @@ public class Menu {
 		System.out.println("(1) Feed Money > ");
 		System.out.println("(2) Select Product > ");
 		System.out.println("(3) Finish Transaction > ");
+		
+		Scanner userInput = new Scanner(System.in);
+		if (userInput.equals("1")) feedMoney(balance);// add feed money functionality
+		if (userInput.equals("2")) printStock(); // add purchase functionality 
+		if (userInput.equals("3")) dispenseChange(balance); selectionMaker(); // close out
+		
+	}
+	
+	@SuppressWarnings("resource")
+	public void addMoney() throws FileNotFoundException {
+		
 		
 		Scanner userInput = new Scanner(System.in);
 		if (userInput.equals("1")); // add feed money functionality

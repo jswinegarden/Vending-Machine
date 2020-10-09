@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class VendingMachine {
 
 	private int productAmount;
-	private double balance;
+	protected double balance;
 	
 	public VendingMachine(int productAmount, double balance) {
 		this.productAmount = productAmount;
