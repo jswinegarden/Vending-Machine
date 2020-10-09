@@ -39,6 +39,9 @@ public class VendingMachine {
 			amountToDeposit += 10.00;
 		}
         balance += amountToDeposit;
+        
+        System.out.println("Your balance is $" + balance);
+        
         return balance;
     }
 	

@@ -1,6 +1,15 @@
 package com.techelevator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Inventory {
+	
 
 	private String slotLocation;
 	private String productName;
@@ -12,7 +21,7 @@ public class Inventory {
 		this.productName = productName;
 		this.productType = productType;
 		this.price = price;
-	}
+	}	
 	
 	public String getSlotLocation() {
 		return slotLocation;
@@ -47,4 +56,36 @@ public class Inventory {
 	}
 	
 	
+	public static void main(String[] args) {
+		
+		
+		ArrayList<String> arrayList = new ArrayList<>();
+		File dataFile = new File("vendingmachine.csv");
+		try(Scanner dataInput = new Scanner(dataFile)) {
+			while(dataInput.hasNextLine()) {
+				arrayList.add(dataInput.nextLine());
+				}
+//			StringBuilder strbul = new StringBuilder();
+//			for(String str : arrayList) {
+//				strbul.append(str);
+//				strbul.append(",");
+//			}
+//			String str = strbul.toString();
+//			
+//			System.out.println(str);
+			
+//			for(int i = 0; i < arrayList.size(); i++) {
+//				String itemList = toString(arrayList[i]);
+//			}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+		} 
+		
+		List<String[]> listOfArrays = new ArrayList<>();
+		for(String i : arrayList) {
+			listOfArrays.add(i.split("\\|"));
+			
+			System.out.println(i);
+		}
+	}
 }

@@ -57,14 +57,4 @@ public class Menu {
 	public void generateSalesReport() {
 		Date currentDate = new Date();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
 }
