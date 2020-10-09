@@ -9,24 +9,15 @@ import java.util.Map;
 import java.util.Scanner;
 import com.techelevator.VendingMachine;
 
-public class Menu extends VendingMachine {
-<<<<<<< HEAD
-	
-=======
-<<<<<<< HEAD
-	
-	
+public class Menu extends VendingMachine {	
 
 	public Menu(int productAmount, double balance) {
 		super(productAmount, balance);
-		
-=======
->>>>>>> 85291dbcb3b661f5894f7c0aaf3e17847fa08c5d
+	}
 
 	public Menu(int productAmount, int balance) {
 		super(productAmount, balance);
 		// TODO Auto-generated constructor stub
->>>>>>> 35bbb40107e4c21360c0a025843f4a48e86bac01
 	}
 
 	public void printBanner() {
