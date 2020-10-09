@@ -13,9 +13,6 @@ public class Inventory {
 		this.productType = productType;
 		this.price = price;
 	}
-
-	
-	
 	
 	public String getSlotLocation() {
 		return slotLocation;

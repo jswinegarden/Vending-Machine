@@ -17,7 +17,7 @@ public class VendingMachine {
 		return productAmount;
 	}
 	
-	public int dispense(int productsToDispense) {
+	public int dispenseProduct(int productsToDispense) {
 		productAmount -= productsToDispense;
 		return productAmount;
 	}
@@ -41,6 +41,38 @@ public class VendingMachine {
         balance += amountToDeposit;
         return balance;
     }
+	
+	public double updateVMBalance(double price) {
+		balance -= price;
+		return balance;
+	}
+	
+	public double dispenseChange(double change) {
+		int quarters = 0;
+		int dimes = 0;
+		int nickels = 0;
+		int pennies = 0;
+		
+		balance -= change;
+		
+		while(change >= 0.25) {
+			quarters++;
+			change -= 0.25;
+		}
+		while(change >= 0.10) {
+			dimes++;
+			change -= 0.10;
+		}
+		while(change >= 0.05) {
+			nickels++;
+			change -= 0.05;
+		}
+		while(change >= 0.01) {
+			pennies++;
+			change -= 0.01;
+		}
+		return balance;
+	}
 
 	public int getProductAmount() {
 		return productAmount;
