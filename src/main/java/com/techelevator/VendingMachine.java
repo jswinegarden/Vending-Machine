@@ -1,5 +1,10 @@
 package com.techelevator;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.Scanner;
 
 public class VendingMachine {
@@ -17,8 +22,9 @@ public class VendingMachine {
 		return productAmount;
 	}
 	
-	public int dispenseProduct(int productsToDispense) {
+	public int dispense(int productsToDispense) {
 		productAmount -= productsToDispense;
+		// logData();
 		return productAmount;
 	}
 	
@@ -39,40 +45,9 @@ public class VendingMachine {
 			amountToDeposit += 10.00;
 		}
         balance += amountToDeposit;
+      //  logData();
         return balance;
     }
-	
-	public double updateVMBalance(double price) {
-		balance -= price;
-		return balance;
-	}
-	
-	public double dispenseChange(double change) {
-		int quarters = 0;
-		int dimes = 0;
-		int nickels = 0;
-		int pennies = 0;
-		
-		balance -= change;
-		
-		while(change >= 0.25) {
-			quarters++;
-			change -= 0.25;
-		}
-		while(change >= 0.10) {
-			dimes++;
-			change -= 0.10;
-		}
-		while(change >= 0.05) {
-			nickels++;
-			change -= 0.05;
-		}
-		while(change >= 0.01) {
-			pennies++;
-			change -= 0.01;
-		}
-		return balance;
-	}
 
 	public int getProductAmount() {
 		return productAmount;
@@ -90,4 +65,15 @@ public class VendingMachine {
 		this.balance = balance;
 	}
 	
+	public void logData() throws IOException {
+		Date currentDate = new Date(0);
+		String dateString = currentDate.toString();
+		File myFile = new File("Log.txt");
+		
+		try (FileWriter myFileWriter = new FileWriter(myFile.getAbsolutePath(), false)) {
+			PrintWriter myPrintWriter = new PrintWriter(myFileWriter);
+			myPrintWriter.println(dateString + "...action..." + "...amount..." + getBalance());
+		}
+		
+	}
 }

@@ -43,7 +43,7 @@ public class Menu extends VendingMachine {
 		Scanner fileScanner = new Scanner(stock);
 		while (fileScanner.hasNextLine()) {
 			String line = fileScanner.nextLine();
-			System.out.println(line + "..fill this!!!.." + " remaining"); // add the number of available items for each product
+			System.out.println(line + getProductAmount() + " remaining"); 
 		}
 	}
 
@@ -78,5 +78,5 @@ public class Menu extends VendingMachine {
 	
 	
 
-	
+
 }
