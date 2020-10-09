@@ -46,6 +46,9 @@ public class VendingMachine {
 		}
         balance += amountToDeposit;
       //  logData();
+        
+        System.out.println("Your balance is $" + balance);
+        
         return balance;
     }
 

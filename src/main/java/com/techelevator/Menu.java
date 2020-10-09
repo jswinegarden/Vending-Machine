@@ -69,14 +69,4 @@ public class Menu extends VendingMachine {
 		PrintWriter printWriter = new PrintWriter(salesReport);
 		// add log data
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 }
