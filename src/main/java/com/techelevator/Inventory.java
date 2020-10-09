@@ -54,38 +54,6 @@ public class Inventory {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
-	
-	public static void main(String[] args) {
-		
-		
-		ArrayList<String> arrayList = new ArrayList<>();
-		File dataFile = new File("vendingmachine.csv");
-		try(Scanner dataInput = new Scanner(dataFile)) {
-			while(dataInput.hasNextLine()) {
-				arrayList.add(dataInput.nextLine());
-				}
-//			StringBuilder strbul = new StringBuilder();
-//			for(String str : arrayList) {
-//				strbul.append(str);
-//				strbul.append(",");
-//			}
-//			String str = strbul.toString();
-//			
-//			System.out.println(str);
-			
-//			for(int i = 0; i < arrayList.size(); i++) {
-//				String itemList = toString(arrayList[i]);
-//			}
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-		} 
-		
-		List<String[]> listOfArrays = new ArrayList<>();
-		for(String i : arrayList) {
-			listOfArrays.add(i.split("\\|"));
-			
-			System.out.println(i);
-		}
-	}
+
 }
+	

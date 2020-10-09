@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import com.techelevator.VendingMachine;
 
 public class Menu extends VendingMachine {
+	
 
 	public Menu(int productAmount, int balance) {
 		super(productAmount, balance);
@@ -69,4 +72,22 @@ public class Menu extends VendingMachine {
 		PrintWriter printWriter = new PrintWriter(salesReport);
 		// add log data
 	}
+	
+
+	public static void main(String[] args) {	
+		
+		File dataFile = new File("vendingmachine.csv");
+		try(Scanner dataInput = new Scanner(dataFile)) {
+			while(dataInput.hasNextLine()) {
+				String line = dataInput.nextLine();
+				String[] separateLine = line.split("\\|");
+				
+				
+			}
+	} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}	
+}
+
+	
 }
