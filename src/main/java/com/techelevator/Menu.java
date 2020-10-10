@@ -109,9 +109,12 @@ public class Menu extends VendingMachine {
 		item.dispense(1);
 		balance -= itemCost;
 		
-		System.out.println("Enjoy your " + item.getProductType() + "produt !");
-		
-		
+//		System.out.println("Enjoy your " + item.getProductType() + "produt !");
+		if (item.getProductType().equals("Chips")) System.out.println("Crunch Crunch, Yum!");
+		if (item.getProductType().equals("Candy")) System.out.println("Munch Munch, Yum!");
+		if (item.getProductType().equals("Drink")) System.out.println("Glug Glug, Yum!");
+		if (item.getProductType().equals("Gum")) System.out.println("Chew Chew, Yum!");
+		System.out.println("Your remaining balance is " + "");
 	}
 	
 //	@SuppressWarnings("resource")
@@ -140,7 +143,7 @@ public class Menu extends VendingMachine {
 		
 	
 		
-		File dataFile = new File(args[0]);
+		File dataFile = new File("vendingmachine.csv");
 		try(Scanner dataInput = new Scanner(dataFile)) {
 			List<Inventory> items = new ArrayList<Inventory>();
 			while(dataInput.hasNextLine()) {

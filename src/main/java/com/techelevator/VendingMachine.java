@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class VendingMachine {
 
 	
-	protected double balance = 0;
+	protected double balance = 2.00;
 	List<Inventory> vendingItems;
 	
 	public VendingMachine(List<Inventory> items) {
@@ -27,16 +27,16 @@ public class VendingMachine {
 		
 		Scanner scanner = new Scanner(System.in);
 		String userInput = scanner.nextLine();
-		if(userInput.equals("1.00")) {
+		if(userInput.equals("1.00") || userInput.equals("1")) {
 			balance += 1.00;
 		}
-		if(userInput.equals("2.00")) {
+		if(userInput.equals("2.00") || userInput.equals("2")) {
 			balance += 2.00;
 		}
-		if(userInput.equals("5.00")) {
+		if(userInput.equals("5.00") || userInput.equals("5")) {
 			balance += 5.00;
 		}
-		if(userInput.equals("10.00")) {
+		if(userInput.equals("10.00") || userInput.equals("10")) {
 			balance += 10.00;
 		}
         
