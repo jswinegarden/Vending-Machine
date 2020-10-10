@@ -47,6 +47,7 @@ public class VendingMachine {
         System.out.println("Your balance is $" + balance);
         
         return balance;
+      
     }
 	
 	public void printStock() {

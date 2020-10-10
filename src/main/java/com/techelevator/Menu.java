@@ -75,7 +75,11 @@ public class Menu extends VendingMachine {
 	
 		Scanner scanner = new Scanner(System.in);
 		String userInput = scanner.nextLine();
-		if (userInput.equals("1")) feedMoney();// add feed money functionality
+		if (userInput.equals("1")) feedMoney(); try {
+			purchaseMenu();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}// add feed money functionality
 		if (userInput.equals("2")) selectProduct(); // add purchase functionality 
 		if (userInput.equals("3")) dispenseChange(balance); selectionMaker(); // close out
 		
@@ -108,14 +112,19 @@ public class Menu extends VendingMachine {
 		}
 		
 		item.dispense(1);
-		balance.subtract(itemCost);
+		balance = balance.subtract(itemCost);
 		
 //		System.out.println("Enjoy your " + item.getProductType() + "produt !");
-		if (item.getProductType().equals("Chips")) System.out.println("Crunch Crunch, Yum!");
+		if (item.getProductType().equals("Chip")) System.out.println("Crunch Crunch, Yum!");
 		if (item.getProductType().equals("Candy")) System.out.println("Munch Munch, Yum!");
 		if (item.getProductType().equals("Drink")) System.out.println("Glug Glug, Yum!");
 		if (item.getProductType().equals("Gum")) System.out.println("Chew Chew, Yum!");
 		System.out.println("Your remaining balance is " + balance + "");
+		try {
+			purchaseMenu();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 //	@SuppressWarnings("resource")
