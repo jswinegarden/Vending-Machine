@@ -88,20 +88,20 @@ public class Menu extends VendingMachine {
 	}
 	
 
-	public static void main(String[] args) {	
-		
-		File dataFile = new File("vendingmachine.csv");
-		try(Scanner dataInput = new Scanner(dataFile)) {
-			while(dataInput.hasNextLine()) {
-				String line = dataInput.nextLine();
-				String[] separateLine = line.split("\\|");
-				
-				
-			}
-	} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		}	
-}
+//	public static void main(String[] args) {	
+//		
+//		File dataFile = new File("vendingmachine.csv");
+//		try(Scanner dataInput = new Scanner(dataFile)) {
+//			while(dataInput.hasNextLine()) {
+//				String line = dataInput.nextLine();
+//				String[] separateLine = line.split("\\|");
+//				
+//				
+//			}
+//	} catch(FileNotFoundException e) {
+//			e.printStackTrace();
+//		}	
+//}
 
 	
 }
