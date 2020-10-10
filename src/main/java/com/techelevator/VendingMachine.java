@@ -21,23 +21,25 @@ public class VendingMachine {
 		this.vendingItems = items;
 	}
 		
-	public double feedMoney(double amountToDeposit) {
+	public double feedMoney() {
 		System.out.println("How much would you like to add?");
 		System.out.println("Eligible increments are $1.00, $2.00, $5.00, and $10.00");
-		Scanner userInput = new Scanner(System.in);
+		
+		Scanner scanner = new Scanner(System.in);
+		String userInput = scanner.nextLine();
 		if(userInput.equals("1.00")) {
-			amountToDeposit += 1.00;
+			balance += 1.00;
 		}
 		if(userInput.equals("2.00")) {
-			amountToDeposit += 2.00;
+			balance += 2.00;
 		}
 		if(userInput.equals("5.00")) {
-			amountToDeposit += 5.00;
+			balance += 5.00;
 		}
 		if(userInput.equals("10.00")) {
-			amountToDeposit += 10.00;
+			balance += 10.00;
 		}
-        balance += amountToDeposit;
+        
       //  logData();
         
         System.out.println("Your balance is $" + balance);

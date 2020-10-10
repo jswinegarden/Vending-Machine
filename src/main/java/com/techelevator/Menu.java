@@ -71,23 +71,25 @@ public class Menu extends VendingMachine {
 		System.out.println("(3) Finish Transaction > ");
 		System.out.println("Current Money Provided: $" + getBalance());
 		
-		Scanner userInput = new Scanner(System.in);
-		if (userInput.equals("1")) feedMoney(balance);// add feed money functionality
+	
+		Scanner scanner = new Scanner(System.in);
+		String userInput = scanner.nextLine();
+		if (userInput.equals("1")) feedMoney();// add feed money functionality
 		if (userInput.equals("2")) printStock(); // add purchase functionality 
 		if (userInput.equals("3")) dispenseChange(balance); selectionMaker(); // close out
 		
 	}
 	
-	@SuppressWarnings("resource")
-	public void addMoney() throws FileNotFoundException {
-		
-		
-		Scanner userInput = new Scanner(System.in);
-		if (userInput.equals("1")); // add feed money functionality
-		if (userInput.equals("2")) printStock(); // add purchase functionality 
-		if (userInput.equals("3")); // close out
-		
-	}
+//	@SuppressWarnings("resource")
+//	public void addMoney() throws FileNotFoundException {
+//		
+//		
+//		Scanner userInput = new Scanner(System.in);
+//		if (userInput.equals("1")); // add feed money functionality
+//		if (userInput.equals("2")) printStock(); // add purchase functionality 
+//		if (userInput.equals("3")); // close out
+//		
+//	}
 	
 	
 	public void generateSalesReport() throws FileNotFoundException {
