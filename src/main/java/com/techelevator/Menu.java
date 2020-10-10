@@ -75,8 +75,42 @@ public class Menu extends VendingMachine {
 		Scanner scanner = new Scanner(System.in);
 		String userInput = scanner.nextLine();
 		if (userInput.equals("1")) feedMoney();// add feed money functionality
-		if (userInput.equals("2")) printStock(); // add purchase functionality 
+		if (userInput.equals("2")) selectProduct(); // add purchase functionality 
 		if (userInput.equals("3")) dispenseChange(balance); selectionMaker(); // close out
+		
+	}
+	
+	public void selectProduct()
+	{
+		printStock();
+		System.out.println("Enter Slot Number > ");
+		Scanner scanner = new Scanner(System.in);
+		String userInput = scanner.nextLine();
+		Inventory item = getItem(userInput);
+		if (item == null)
+		{
+			System.out.println("The slot number: " + userInput + " is not valid.");
+			return;
+		}
+		
+		double itemCost = item.getPrice();
+		if (itemCost > balance)
+		{
+			System.out.println("You need $" + -(balance - itemCost) + " more!");
+			return;
+		}
+		
+		if (item.getProductAmount() <= 0)
+		{
+			System.out.println("There are no more " + item.getProductName() + "!");
+			return;
+		}
+		
+		item.dispense(1);
+		balance -= itemCost;
+		
+		System.out.println("Enjoy your " + item.getProductType() + "produt !");
+		
 		
 	}
 	

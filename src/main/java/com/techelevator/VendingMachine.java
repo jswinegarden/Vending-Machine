@@ -102,4 +102,17 @@ public class VendingMachine {
 		}
 		
 	}
+	
+	public Inventory getItem(String slotLocation)
+	{
+		for (Inventory item : this.vendingItems)
+		{
+			//System.out.println("Comparing " + slotLocation + " to " + item.getSlotLocation());
+			if (item.getSlotLocation().equals(slotLocation))
+			{
+				return item;
+			}
+		}
+		return null;
+	}
 }
