@@ -15,10 +15,10 @@ public class Menu extends VendingMachine {
 		super(productAmount, balance);
 	}
 
-	public Menu(int productAmount, int balance) {
-		super(productAmount, balance);
+	//public Menu(int productAmount, int balance) {
+		//super(productAmount, balance);
 		// TODO Auto-generated constructor stub
-	}
+	//}
 
 	public void printBanner() {
 	System.out.println("***************");
