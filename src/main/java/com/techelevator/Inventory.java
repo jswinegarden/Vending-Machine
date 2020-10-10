@@ -15,6 +15,7 @@ public class Inventory {
 	private String productName;
 	private String productType;
 	private double price;
+	private int productAmount = 5;
 	
 	public Inventory(String slotLocation, String productName, String productType, double price) {
 		this.slotLocation = slotLocation;
@@ -55,5 +56,29 @@ public class Inventory {
 		this.price = price;
 	}
 
+	public int stockInventory(int productToStock) {
+		productAmount += productToStock;
+		return productAmount;
+	}
+	
+	public int dispense(int productsToDispense) {
+		productAmount -= productsToDispense;
+		return productAmount;
+	}
+	
+	public int getProductAmount() {
+		return productAmount;
+	}
+
+	  @Override
+	public String toString() { 
+			return slotLocation.toString() + " " +
+			productName.toString() + " " +
+			productType.toString() + " " +
+			price + " " +
+			productAmount;
+	  
+	}
+	
 }
 	

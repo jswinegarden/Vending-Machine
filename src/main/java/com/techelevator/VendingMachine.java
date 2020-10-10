@@ -3,6 +3,7 @@ package com.techelevator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,25 +13,14 @@ import java.util.Scanner;
 
 public class VendingMachine {
 
-	private int productAmount;
-	protected double balance;
 	
-	public VendingMachine(int productAmount, double balance) {
-		this.productAmount = productAmount;
-		this.balance = balance;
+	protected double balance = 0;
+	List<Inventory> vendingItems;
+	
+	public VendingMachine(List<Inventory> items) {
+		this.vendingItems = items;
 	}
-	
-	public int stockInventory(int productToStock) {
-		productAmount += productToStock;
-		return productAmount;
-	}
-	
-	public int dispense(int productsToDispense) {
-		productAmount -= productsToDispense;
-		// logData();
-		return productAmount;
-	}
-	
+		
 	public double feedMoney(double amountToDeposit) {
 		System.out.println("How much would you like to add?");
 		System.out.println("Eligible increments are $1.00, $2.00, $5.00, and $10.00");
@@ -54,6 +44,12 @@ public class VendingMachine {
         
         return balance;
     }
+	
+	public void printStock() {
+		for(Inventory item: this.vendingItems) {
+			System.out.println(item);
+		}
+	}
 	
 	public double dispenseChange(double change) {
 		int quarters = 0;
@@ -83,14 +79,6 @@ public class VendingMachine {
 		System.out.println("Your change is " + quarters + " quarters, " + dimes + " dimes, " + nickels + " nickels, and " + pennies + " pennies");
 		
 		return balance;
-	}
-
-	public int getProductAmount() {
-		return productAmount;
-	}
-
-	public void setProductAmount(int productAmount) {
-		this.productAmount = 5;
 	}
 
 	public double getBalance() {

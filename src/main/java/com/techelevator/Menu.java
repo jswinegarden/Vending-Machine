@@ -4,15 +4,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import com.techelevator.VendingMachine;
 
 public class Menu extends VendingMachine {	
+	
+	//public static void main(String[] args) {
 
-	public Menu(int productAmount, double balance) {
-		super(productAmount, balance);
+	public Menu(List<Inventory> items) {
+		super(items);
 	}
 
 	//public Menu(int productAmount, int balance) {
@@ -30,28 +34,35 @@ public class Menu extends VendingMachine {
 
 	@SuppressWarnings("resource")
 	public void selectionMaker() throws FileNotFoundException {
-		System.out.print("Please make a selection >>> ");
+		System.out.println("Please make a selection >>> ");
 		System.out.println("(1) Display Vending Machine Items > ");
 		System.out.println("(2) Purchase > ");
 		System.out.println("(3) Exit > ");
 		
-		Scanner userInput = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
+		String userInput = scanner.nextLine();
 		if (userInput.equals("1")) printStock();
 		if (userInput.equals("2")) purchaseMenu();
 		if (userInput.equals("3")) System.exit(1);
 		if (userInput.equals("4")) generateSalesReport();
 
 	}
-
-	@SuppressWarnings("resource")
-	public void printStock() throws FileNotFoundException { // display each item with # remaining
-		File stock = new File("vendingmachine.csv");
-		Scanner fileScanner = new Scanner(stock);
-		while (fileScanner.hasNextLine()) {
-			String line = fileScanner.nextLine();
-			System.out.println(line + getProductAmount() + " remaining"); 
-		}
-	}
+		//@SuppressWarnings("resource")
+		//public void printStock() {
+			// display each item with # remaining
+			
+		
+	
+		// display each item with # remaining
+//	@SuppressWarnings("resource")
+//	public void printStock() throws FileNotFoundException { // display each item with # remaining
+//		File stock = new File("vendingmachine.csv");
+//		Scanner fileScanner = new Scanner(stock);
+//		while (fileScanner.hasNextLine()) {
+//			String line = fileScanner.nextLine();
+//			System.out.println(line + getProductAmount() + " remaining"); 
+//		}
+//	}
 
 	@SuppressWarnings("resource")
 	public void purchaseMenu() throws FileNotFoundException {
@@ -88,20 +99,38 @@ public class Menu extends VendingMachine {
 	}
 	
 
-//	public static void main(String[] args) {	
-//		
-//		File dataFile = new File("vendingmachine.csv");
-//		try(Scanner dataInput = new Scanner(dataFile)) {
-//			while(dataInput.hasNextLine()) {
-//				String line = dataInput.nextLine();
-//				String[] separateLine = line.split("\\|");
-//				
-//				
-//			}
-//	} catch(FileNotFoundException e) {
-//			e.printStackTrace();
-//		}	
-//}
-
+	public static void main(String[] args) {	
+		System.out.println("Begin Main");
+		
+	
+		
+		File dataFile = new File(args[0]);
+		try(Scanner dataInput = new Scanner(dataFile)) {
+			List<Inventory> items = new ArrayList<Inventory>();
+			while(dataInput.hasNextLine()) {
+				String line = dataInput.nextLine();
+				String[] separateLine = line.split("\\|");
+				//System.out.println(line);
+				String slotLocation = separateLine[0]; 
+				String productName = separateLine[1];
+				String productType = separateLine[3];
+				double price = Double.parseDouble(separateLine[2]); 
+				Inventory item = new Inventory(slotLocation, productName, productType, price);
+				items.add(item);
+				
+			}
+			Menu menu = new Menu(items);
+			while(true)
+			{
+				menu.printBanner();
+				menu.selectionMaker();
+			}
+	} catch(FileNotFoundException e) {
+			e.printStackTrace();
+			
+			
+		}	
+System.out.println("End Main");
+}
 	
 }
