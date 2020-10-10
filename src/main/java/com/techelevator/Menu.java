@@ -3,6 +3,7 @@ package com.techelevator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ public class Menu extends VendingMachine {
 	//public static void main(String[] args) {
 
 	public Menu(List<Inventory> items) {
-		super(items);
+		super(items, 0);
 	}
 
 	//public Menu(int productAmount, int balance) {
@@ -93,10 +94,10 @@ public class Menu extends VendingMachine {
 			return;
 		}
 		
-		double itemCost = item.getPrice();
-		if (itemCost > balance)
+		BigDecimal itemCost = item.getPrice();
+		if (itemCost.compareTo(balance) > 0)
 		{
-			System.out.println("You need $" + -(balance - itemCost) + " more!");
+			System.out.println("You need $" + (balance.subtract(itemCost).abs()) + " more!");
 			return;
 		}
 		
@@ -107,14 +108,14 @@ public class Menu extends VendingMachine {
 		}
 		
 		item.dispense(1);
-		balance -= itemCost;
+		balance.subtract(itemCost);
 		
 //		System.out.println("Enjoy your " + item.getProductType() + "produt !");
 		if (item.getProductType().equals("Chips")) System.out.println("Crunch Crunch, Yum!");
 		if (item.getProductType().equals("Candy")) System.out.println("Munch Munch, Yum!");
 		if (item.getProductType().equals("Drink")) System.out.println("Glug Glug, Yum!");
 		if (item.getProductType().equals("Gum")) System.out.println("Chew Chew, Yum!");
-		System.out.println("Your remaining balance is " + "");
+		System.out.println("Your remaining balance is " + balance + "");
 	}
 	
 //	@SuppressWarnings("resource")
@@ -153,7 +154,7 @@ public class Menu extends VendingMachine {
 				String slotLocation = separateLine[0]; 
 				String productName = separateLine[1];
 				String productType = separateLine[3];
-				double price = Double.parseDouble(separateLine[2]); 
+				BigDecimal price = new BigDecimal(separateLine[2]); 
 				Inventory item = new Inventory(slotLocation, productName, productType, price);
 				items.add(item);
 				

@@ -8,36 +8,38 @@ import java.util.Map;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Scanner;
 
 public class VendingMachine {
 
 	
-	protected double balance = 2.00;
+	protected BigDecimal balance;
 	List<Inventory> vendingItems;
 	
-	public VendingMachine(List<Inventory> items) {
+	public VendingMachine(List<Inventory> items, double balance) {
 		this.vendingItems = items;
+		this.balance = new BigDecimal(balance);
 	}
 		
-	public double feedMoney() {
+	public BigDecimal feedMoney() {
 		System.out.println("How much would you like to add?");
 		System.out.println("Eligible increments are $1.00, $2.00, $5.00, and $10.00");
 		
 		Scanner scanner = new Scanner(System.in);
 		String userInput = scanner.nextLine();
 		if(userInput.equals("1.00") || userInput.equals("1")) {
-			balance += 1.00;
+			balance = balance.add(new BigDecimal(1.00));
 		}
 		if(userInput.equals("2.00") || userInput.equals("2")) {
-			balance += 2.00;
+			balance = balance.add(new BigDecimal(2.00));
 		}
 		if(userInput.equals("5.00") || userInput.equals("5")) {
-			balance += 5.00;
+			balance = balance.add(new BigDecimal(5.00));
 		}
 		if(userInput.equals("10.00") || userInput.equals("10")) {
-			balance += 10.00;
+			balance = balance.add(new BigDecimal(10.00));
 		}
         
       //  logData();
@@ -53,29 +55,29 @@ public class VendingMachine {
 		}
 	}
 	
-	public double dispenseChange(double change) {
+	public BigDecimal dispenseChange(BigDecimal change) {
 		int quarters = 0;
 		int dimes = 0;
 		int nickels = 0;
 		int pennies = 0;
 		
-		balance -= change;
+		balance = balance.subtract(change);
 		
-		while(change >= 0.25) {
+		while(change.compareTo(new BigDecimal(0.25)) >= 0.25) {
 			quarters++;
-			change -= 0.25;
+			change = change.subtract(new BigDecimal(0.25));
 		}
-		while(change >= 0.10) {
+		while(change.compareTo(new BigDecimal(0.10)) >= 0.10) {
 			dimes++;
-			change -= 0.10;
+			change = change.subtract(new BigDecimal(0.10));
 		}
-		while(change >= 0.05) {
+		while(change.compareTo(new BigDecimal(0.05)) >= 0.05) {
 			nickels++;
-			change -= 0.05;
+			change = change.subtract(new BigDecimal(0.05));
 		}
-		while(change >= 0.01) {
+		while(change.compareTo(new BigDecimal(0.01)) >= 0.01) {
 			pennies++;
-			change -= 0.01;
+			change = change.subtract(new BigDecimal(0.01));
 		}
 		
 		System.out.println("Your change is " + quarters + " quarters, " + dimes + " dimes, " + nickels + " nickels, and " + pennies + " pennies");
@@ -83,11 +85,11 @@ public class VendingMachine {
 		return balance;
 	}
 
-	public double getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 	
@@ -102,7 +104,7 @@ public class VendingMachine {
 		}
 		
 	}
-	
+
 	public Inventory getItem(String slotLocation)
 	{
 		for (Inventory item : this.vendingItems)

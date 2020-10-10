@@ -2,6 +2,7 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,10 +15,10 @@ public class Inventory {
 	private String slotLocation;
 	private String productName;
 	private String productType;
-	private double price;
+	private BigDecimal price;
 	private int productAmount = 5;
 	
-	public Inventory(String slotLocation, String productName, String productType, double price) {
+	public Inventory(String slotLocation, String productName, String productType, BigDecimal price) {
 		this.slotLocation = slotLocation;
 		this.productName = productName;
 		this.productType = productType;
@@ -48,11 +49,11 @@ public class Inventory {
 		this.productType = productType;
 	}
 
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
