@@ -24,7 +24,7 @@ public class VendingMachine {
 		this.vendingItems = items;
 		this.balance = new BigDecimal(balance);
 	}
-	
+
 	public void printStock() {
 		for(Inventory item: this.vendingItems) {
 			System.out.println(item);
@@ -35,9 +35,6 @@ public class VendingMachine {
 		int quarters = 0;
 		int dimes = 0;
 		int nickels = 0;
-		int pennies = 0;
-		
-		
 		
 		while(change.compareTo(new BigDecimal(0.25)) >= 0.25) {
 			quarters++;
@@ -51,12 +48,8 @@ public class VendingMachine {
 			nickels++;
 			change = change.subtract(new BigDecimal(0.05));
 		}
-		while(change.compareTo(new BigDecimal(0.01)) >= 0.01) {
-			pennies++;
-			change = change.subtract(new BigDecimal(0.01));
-		}
 		
-		System.out.println("Your change is " + quarters + " quarters, " + dimes + " dimes, " + nickels + " nickels, and " + pennies + " pennies");
+		System.out.println("Your change is " + quarters + " quarters, " + dimes + " dimes, and " + nickels + " nickels");
 		
 		String timeStamp = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa").format(Calendar.getInstance().getTime());
 		File myFile = new File("Log.txt");
@@ -65,7 +58,7 @@ public class VendingMachine {
     	myPrintWriter.println(timeStamp + " GIVE CHANGE: $" + balance + " " + balance.subtract(balance));   
        }
 	
-       balance = balance.subtract(change);
+       balance = balance.subtract(balance);
        
 		return balance;
 	}
