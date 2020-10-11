@@ -2,6 +2,7 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class VendingMachine {
@@ -22,33 +24,6 @@ public class VendingMachine {
 		this.vendingItems = items;
 		this.balance = new BigDecimal(balance);
 	}
-		
-	public BigDecimal feedMoney() {
-		System.out.println("How much would you like to add?");
-		System.out.println("Eligible increments are $1.00, $2.00, $5.00, and $10.00");
-		
-		Scanner scanner = new Scanner(System.in);
-		String userInput = scanner.nextLine();
-		if(userInput.equals("1.00") || userInput.equals("1")) {
-			balance = balance.add(new BigDecimal(1.00));
-		}
-		if(userInput.equals("2.00") || userInput.equals("2")) {
-			balance = balance.add(new BigDecimal(2.00));
-		}
-		if(userInput.equals("5.00") || userInput.equals("5")) {
-			balance = balance.add(new BigDecimal(5.00));
-		}
-		if(userInput.equals("10.00") || userInput.equals("10")) {
-			balance = balance.add(new BigDecimal(10.00));
-		}
-        
-      //  logData();
-        
-        System.out.println("Your balance is $" + balance);
-        
-        return balance;
-      
-    }
 	
 	public void printStock() {
 		for(Inventory item: this.vendingItems) {
@@ -56,13 +31,13 @@ public class VendingMachine {
 		}
 	}
 	
-	public BigDecimal dispenseChange(BigDecimal change) {
+	public BigDecimal dispenseChange(BigDecimal change) throws IOException {
 		int quarters = 0;
 		int dimes = 0;
 		int nickels = 0;
 		int pennies = 0;
 		
-		balance = balance.subtract(change);
+		
 		
 		while(change.compareTo(new BigDecimal(0.25)) >= 0.25) {
 			quarters++;
@@ -83,6 +58,15 @@ public class VendingMachine {
 		
 		System.out.println("Your change is " + quarters + " quarters, " + dimes + " dimes, " + nickels + " nickels, and " + pennies + " pennies");
 		
+		String timeStamp = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa").format(Calendar.getInstance().getTime());
+		File myFile = new File("Log.txt");
+		
+       try(PrintWriter myPrintWriter = new PrintWriter(new FileWriter(myFile, true))) {
+    	myPrintWriter.println(timeStamp + " GIVE CHANGE: $" + balance + " " + balance.subtract(balance));   
+       }
+	
+       balance = balance.subtract(change);
+       
 		return balance;
 	}
 
@@ -93,26 +77,10 @@ public class VendingMachine {
 	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
-	
-	public void logData() throws IOException {
-		Date currentDate = new Date(0);
-		String dateString = currentDate.toString();
-		File myFile = new File("Log.txt");
-		
-		try (FileWriter myFileWriter = new FileWriter(myFile.getAbsolutePath(), false)) {
-			PrintWriter myPrintWriter = new PrintWriter(myFileWriter);
-			myPrintWriter.println(dateString + "...action..." + "...amount..." + getBalance());
-		}
-		
-	}
 
-	public Inventory getItem(String slotLocation)
-	{
-		for (Inventory item : this.vendingItems)
-		{
-			//System.out.println("Comparing " + slotLocation + " to " + item.getSlotLocation());
-			if (item.getSlotLocation().equals(slotLocation))
-			{
+	public Inventory getItem(String slotLocation) {
+		for (Inventory item : this.vendingItems) {
+			if (item.getSlotLocation().equals(slotLocation)) {
 				return item;
 			}
 		}
