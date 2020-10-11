@@ -1,15 +1,21 @@
 package com.techelevator;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class VendingMachineTests {
+	
+	VendingMachine vendingMachines = new VendingMachine(null, 0);
+	
 
 	@Test
 	public void check_that_balance_is_zero() throws IOException {
@@ -26,47 +32,32 @@ public class VendingMachineTests {
 //	
 //	}
 	
-	private List<String> lstTest = new ArrayList<>(); 
-			
-	
-	@Before
-	public void init() {
-		lstTest.add("Potato Crisps");
-		lstTest.add("Stackers");
-		lstTest.add("Grain Waves");
-		lstTest.add("Cloud Popcorn");
-		lstTest.add("Moonpie");
-		lstTest.add("Cowtales");
-		lstTest.add("Wonka Bar");
-		lstTest.add("Crunchie");
-		lstTest.add("Cola");
-		lstTest.add("Dr. Salt");
-		lstTest.add("Mountain Melter");
-		lstTest.add("Heavy");
-		lstTest.add("U-Chews");
-		lstTest.add("Little League");
-		lstTest.add("Chiclets");
-		lstTest.add("Triplemint");
-	}
-	
-	List<Inventory> objectList = new ArrayList<Inventory>();
-	
 	@Test
-	public void check_print_stock_size() {
-		Assert.assertEquals("checking size of list", 16, lstTest.size());
+	public void check_get_item() throws IOException {
+	
+	File dataFile = new File("vendingmachine.csv");
+	
+	try(Scanner dataInput = new Scanner(dataFile)) {
+		List<Inventory> items = new ArrayList<Inventory>();
+		while(dataInput.hasNextLine()) {
+			String line = dataInput.nextLine();
+			String[] separateLine = line.split("\\|");
+			String slotLocation = separateLine[0]; 
+			String productName = separateLine[1];
+			String productType = separateLine[3];
+			BigDecimal price = new BigDecimal(separateLine[2]); 
+			Inventory item = new Inventory(slotLocation, productName, productType, price);
+			items.add(item);
+		
+	
+	
+		VendingMachine gettingItem = new VendingMachine(items, 0);
+		Inventory output = gettingItem.getItem(separateLine[0]);
+		Assert.assertEquals(item, output);
+	}
+	}
 	}
 	
-//	@Test
-//	public void check_print_stock_output() {
-//		VendingMachine printingStock = new VendingMachine();
-//		List<String> output = printingStock.printStock();
-//		Assert.assert
-//	}
 	
-	@Test
-	public void check_get_item() {
-		VendingMachine gettingItem = new VendingMachine(objectList, 0);
-		Inventory output = gettingItem.getItem("A1");
-		Assert.assertEquals("Potato Crisps", output);
-	}
+	
 }
