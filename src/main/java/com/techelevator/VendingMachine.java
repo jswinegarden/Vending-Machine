@@ -10,6 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -31,22 +33,23 @@ public class VendingMachine {
 		}
 	}
 	
+	@SuppressWarnings("static-access")
 	public BigDecimal dispenseChange(BigDecimal change) throws IOException {
 		int quarters = 0;
 		int dimes = 0;
 		int nickels = 0;
 		
-		while(change.compareTo(new BigDecimal(0.25)) >= 0.25) {
+		while(change.compareTo(new BigDecimal(Double.toString(0.25))) >= 0) {
 			quarters++;
-			change = change.subtract(new BigDecimal(0.25));
+			change = change.subtract(new BigDecimal(Double.toString(0.25)));
 		}
-		while(change.compareTo(new BigDecimal(0.10)) >= 0.10) {
+		while(change.compareTo(new BigDecimal(Double.toString(0.10))) >= 0) {
 			dimes++;
-			change = change.subtract(new BigDecimal(0.10));
+			change = change.subtract(new BigDecimal(Double.toString(0.10)));
 		}
-		while(change.compareTo(new BigDecimal(0.05)) >= 0.05) {
+		while(change.compareTo(new BigDecimal(Double.toString(0.05))) >= 0) {
 			nickels++;
-			change = change.subtract(new BigDecimal(0.05));
+			change = change.subtract(new BigDecimal(Double.toString(0.05)));
 		}
 		
 		System.out.println("Your change is " + quarters + " quarters, " + dimes + " dimes, and " + nickels + " nickels");
