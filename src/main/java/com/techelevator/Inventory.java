@@ -25,6 +25,12 @@ public class Inventory {
 		this.price = price;
 	}	
 	
+
+	public Inventory(int input) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public String getSlotLocation() {
 		return slotLocation;
 	}
@@ -58,6 +64,7 @@ public class Inventory {
 	}
 
 	public int stockInventory(int productToStock) {
+		productToStock = 5 - productAmount;
 		productAmount += productToStock;
 		return productAmount;
 	}

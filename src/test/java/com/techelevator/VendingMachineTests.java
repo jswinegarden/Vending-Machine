@@ -24,14 +24,6 @@ public class VendingMachineTests {
 		Assert.assertEquals(new BigDecimal(0), output);
 	}
 
-//	@Test
-//	public void check_for_nickels() {
-//	VendingMachine dispensesChange = new VendingMachine(null, 0);
-//	int output = dispensesChange.dispenseChange();
-//	Assert.assertEquals(expected, output);
-//	
-//	}
-	
 	@Test
 	public void check_get_item() throws IOException {
 	
@@ -49,15 +41,10 @@ public class VendingMachineTests {
 			Inventory item = new Inventory(slotLocation, productName, productType, price);
 			items.add(item);
 		
-	
-	
 		VendingMachine gettingItem = new VendingMachine(items, 0);
 		Inventory output = gettingItem.getItem(separateLine[0]);
 		Assert.assertEquals(item, output);
+			}
+		}
 	}
-	}
-	}
-	
-	
-	
 }

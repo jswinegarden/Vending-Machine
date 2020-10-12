@@ -45,7 +45,6 @@ public class Menu extends VendingMachine {
 		if (userInput.equals("1")) printStock();
 		if (userInput.equals("2")) purchaseMenu();
 		if (userInput.equals("3")) System.exit(1);
-		if (userInput.equals("4")) generateSalesReport();
 
 	}
 
@@ -75,7 +74,7 @@ public class Menu extends VendingMachine {
 		printStock();
 		System.out.println("Enter Slot Number > ");
 		Scanner scanner = new Scanner(System.in);
-		String userInput = scanner.nextLine();
+		String userInput = (scanner.nextLine()).toUpperCase();
 		Inventory item = getItem(userInput);
 		if (item == null) {
 			System.out.println("The slot number: " + userInput + " is not valid.");
@@ -130,14 +129,12 @@ public class Menu extends VendingMachine {
 		if(userInput.equals("10.00") || userInput.equals("10")) {
 			balance = balance.add(new BigDecimal(10.00));
 		}
-//		if(userInput.equals("Return") || userInput.equals("return")) {
-//			try {
-//				purchaseMenu();
-//			} catch (FileNotFoundException e) {
-//				e.printStackTrace();
-//			}
-//		}        		
-//		Date currentDate = new Date(0);
+			try {
+				purchaseMenu();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		        		
 		String timeStamp = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa").format(Calendar.getInstance().getTime());
 		File myFile = new File("Log.txt");
 		
@@ -149,27 +146,6 @@ public class Menu extends VendingMachine {
         
         return balance;
     }
-	
-//	public void logData() throws IOException {
-//		Date currentDate = new Date(0);
-//		String dateString = currentDate.toString();
-//		File myFile = new File("Log.txt");
-//		myFile.createNewFile();
-//		
-//		try (FileWriter myFileWriter = new FileWriter(myFile.getAbsolutePath(), false)) {
-//			PrintWriter myPrintWriter = new PrintWriter(myFileWriter);
-//			myPrintWriter.println(dateString + "...action..." + "...amount..." + getBalance());
-//		}	
-//	}	
-	
-	public void generateSalesReport() throws FileNotFoundException {
-		Date currentDate = new Date(0);
-		String dateString = currentDate.toString();
-		File salesReport = new File(dateString);
-		PrintWriter printWriter = new PrintWriter(salesReport);
-		// add log data
-	}
-	
 
 	public static void main(String[] args) throws IOException {	
 		System.out.println("Begin Main");
@@ -180,7 +156,6 @@ public class Menu extends VendingMachine {
 			while(dataInput.hasNextLine()) {
 				String line = dataInput.nextLine();
 				String[] separateLine = line.split("\\|");
-				//System.out.println(line);
 				String slotLocation = separateLine[0]; 
 				String productName = separateLine[1];
 				String productType = separateLine[3];
