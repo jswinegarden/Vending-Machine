@@ -52,7 +52,7 @@ public class VendingMachine {
 			change = change.subtract(new BigDecimal(Double.toString(0.05)));
 		}
 		
-		System.out.println("Your change is " + quarters + " quarters, " + dimes + " dimes, and " + nickels + " nickels");
+		System.out.println("Your change is " + quarters + " quarters, " + dimes + " dimes, and " + nickels + " nickels \n");
 		
 		String timeStamp = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa").format(Calendar.getInstance().getTime());
 		File myFile = new File("Log.txt");

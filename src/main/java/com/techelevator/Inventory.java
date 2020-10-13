@@ -24,12 +24,8 @@ public class Inventory {
 		this.productType = productType;
 		this.price = price;
 	}	
-	
 
-	public Inventory(int input) {
-		// TODO Auto-generated constructor stub
-	}
-
+	public Inventory(int input) {}
 
 	public String getSlotLocation() {
 		return slotLocation;
@@ -85,8 +81,6 @@ public class Inventory {
 			productType.toString() + " " +
 			price + " " +
 			productAmount;
-	  
 	}
-	
 }
 	
